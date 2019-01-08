@@ -3,7 +3,8 @@
             [berganzapablo.middleware :refer [middleware]]
             [hiccup.page :refer [include-js include-css html5]]
             [config.core :refer [env]]
-            [cheshire.core :refer [generate-string]]))
+            [cheshire.core :refer [generate-string]]
+            [berganzapablo.api.body :refer [api-test-body about-body]]))
 
 (def mount-target
   [:div#app
@@ -34,13 +35,11 @@
 (defn keywordize-map [str-map]
   (into {} (map #(vector (keyword (first %)) (second %)) str-map)))
 
-(defn api-test-body [{:keys [name]}]
-  {:name name})
-
 (defn body-for
   [{:keys [uri query-params body] :as request}]
   (case uri
-    "/api/test" (api-test-body (keywordize-map query-params))))
+    "/api/test" (api-test-body (keywordize-map query-params))
+    "/api/about" (about-body)))
 
 (defn api-handler
   [request]
@@ -53,7 +52,9 @@
    (reitit-ring/router
     [["/" {:get {:handler index-handler}}]
      ["/about" {:get {:handler index-handler}}]
-     ["/api/test" {:get {:handler api-handler}}]]
+     ["/api"
+      ["/test" {:get {:handler api-handler}}]
+      ["/about" {:get {:handler api-handler}}]]]
     {:data {:middleware middleware}})
    (reitit-ring/routes
     (reitit-ring/create-resource-handler {:path "/" :root "/public"})
