@@ -2,7 +2,8 @@
   (:require [reitit.ring :as reitit-ring]
             [berganzapablo.middleware :refer [middleware]]
             [hiccup.page :refer [include-js include-css html5]]
-            [config.core :refer [env]]))
+            [config.core :refer [env]]
+            [cheshire.core :refer [generate-string]]))
 
 (def mount-target
   [:div#app
@@ -30,15 +31,29 @@
    :headers {"Content-Type" "text/html"}
    :body (loading-page)})
 
+(defn keywordize-map [str-map]
+  (into {} (map #(vector (keyword (first %)) (second %)) str-map)))
+
+(defn api-test-body [{:keys [name]}]
+  {:name name})
+
+(defn body-for
+  [{:keys [uri query-params body] :as request}]
+  (case uri
+    "/api/test" (api-test-body (keywordize-map query-params))))
+
+(defn api-handler
+  [request]
+  {:status 200
+   :headers {"Content-Type" "application/json"}
+   :body (generate-string (body-for request))})
+
 (def app
   (reitit-ring/ring-handler
    (reitit-ring/router
     [["/" {:get {:handler index-handler}}]
-     ["/items"
-      ["" {:get {:handler index-handler}}]
-      ["/:item-id" {:get {:handler index-handler
-                          :parameters {:path {:item-id int?}}}}]]
-     ["/about" {:get {:handler index-handler}}]]
+     ["/about" {:get {:handler index-handler}}]
+     ["/api/test" {:get {:handler api-handler}}]]
     {:data {:middleware middleware}})
    (reitit-ring/routes
     (reitit-ring/create-resource-handler {:path "/" :root "/public"})
