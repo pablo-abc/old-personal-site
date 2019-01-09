@@ -1,13 +1,13 @@
 (ns berganzapablo.core
-    (:require [reagent.core :as reagent :refer [atom]]
-              [reagent.session :as session]
-              [reitit.frontend :as reitit]
-              [clerk.core :as clerk]
-              [accountant.core :as accountant]
-              [berganzapablo.views.home :refer [home-page]]
-              [berganzapablo.views.about :refer [about-page]]
-              [berganzapablo.routes :refer [router path-for]]
-              [berganzapablo.layout.current :refer [current-page-layout]]))
+  (:require [reagent.core :as reagent :refer [atom]]
+            [reagent.session :as session]
+            [reitit.frontend :as reitit]
+            [clerk.core :as clerk]
+            [accountant.core :as accountant]
+            [berganzapablo.views.home :refer [home-page]]
+            [berganzapablo.views.about :refer [about-page]]
+            [berganzapablo.routes :refer [router path-for]]
+            [berganzapablo.layout.current :refer [current-page-layout]]))
 
 
 ;; -------------------------
@@ -31,7 +31,8 @@
 ;; Initialize app
 
 (defn mount-root []
-  (reagent/render [current-page] (.getElementById js/document "app")))
+  (js/ReactDOM.hydrate
+   (reagent/as-element [current-page]) (.getElementById js/document "app")))
 
 (defn init! []
   (clerk/initialize!)

@@ -7,7 +7,7 @@
 
 
 (defn about-page []
-  (let [state (reagent/atom {:text ""})]
+  (let [state (reagent/atom {:text "Programmer. And stuff"})]
     (reagent/create-class
      {:component-did-mount
       (fn []
