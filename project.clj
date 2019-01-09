@@ -24,7 +24,8 @@
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
             [lein-asset-minifier "0.2.7"
-             :exclusions [org.clojure/clojure]]]
+             :exclusions [org.clojure/clojure]]
+            [lein-ring "0.12.4"]]
 
   :ring {:handler berganzapablo.handler/app
          :uberwar-name "berganzapablo.war"}
@@ -92,7 +93,7 @@
                                   [figwheel-sidecar "0.5.18"]
                                   [nrepl "0.5.3"]
                                   [pjstadig/humane-test-output "0.9.0"]
-                                  
+
  ]
 
                    :source-paths ["env/dev/clj"]
