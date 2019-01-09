@@ -1,9 +1,8 @@
 (ns berganzapablo.views.home
-  (:require [berganzapablo.routes :refer [path-for]]))
+  (:require [berganzapablo.routes :refer [path-for]]
+            [berganzapablo.layout.home :refer [home-layout]]))
 
 
 (defn home-page []
   (fn []
-    [:span.main
-     [:h1 "Welcome to berganzapablo"]
-     [:p "Programmer. Wish there were more LISP in the world."]]))
+    (home-layout)))

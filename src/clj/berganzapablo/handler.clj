@@ -4,7 +4,12 @@
             [hiccup.page :refer [include-js include-css html5]]
             [config.core :refer [env]]
             [cheshire.core :refer [generate-string]]
-            [berganzapablo.api.body :refer [api-test-body about-body]]))
+            [berganzapablo.api.body :refer [api-test-body about-body]]
+            [berganzapablo.layout.about :refer [about-layout]]
+            [berganzapablo.layout.current :refer [current-page-layout]]
+            [berganzapablo.layout.home :refer [home-layout]]))
+
+(def menu-routes ["/" "/about"])
 
 (def mount-target
   [:div#app
@@ -26,11 +31,28 @@
     mount-target
     (include-js "/js/app.js")]))
 
+(defn mount-layout [layout]
+  [:div#app
+   (current-page-layout layout menu-routes)])
+
+(defn current-page [uri]
+  (html5
+   (head)
+   [:body.body-container
+    (mount-layout
+     (case uri
+       "/" (home-layout)
+       "/about" (about-layout (about-body))))
+    (include-js "/js/app.js")]))
+
 (defn index-handler
-  [_request]
+  [{:keys [uri] :as request}]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body (loading-page)})
+   :body (case uri
+           "/" (current-page uri)
+           "/about" (current-page uri)
+           (loading-page))})
 
 (defn keywordize-map [str-map]
   (into {} (map #(vector (keyword (first %)) (second %)) str-map)))

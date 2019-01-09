@@ -6,7 +6,8 @@
               [accountant.core :as accountant]
               [berganzapablo.views.home :refer [home-page]]
               [berganzapablo.views.about :refer [about-page]]
-              [berganzapablo.routes :refer [router path-for]]))
+              [berganzapablo.routes :refer [router path-for]]
+              [berganzapablo.layout.current :refer [current-page-layout]]))
 
 
 ;; -------------------------
@@ -24,11 +25,7 @@
 (defn current-page []
   (fn []
     (let [page (:current-page (session/get :route))]
-      [:div
-       [:header
-        [:p [:a {:href (path-for :index)} "Home"] " | "
-         [:a {:href (path-for :about)} "About berganzapablo"]]]
-       [page]])))
+      (current-page-layout [page] [(path-for :index) (path-for :about)]))))
 
 ;; -------------------------
 ;; Initialize app
