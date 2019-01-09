@@ -83,6 +83,8 @@
    :ring-handler berganzapablo.handler/app}
 
 
+  :sass {:source-paths ["src/sass"]
+         :target-path "resources/public/css"}
 
   :profiles {:dev {:repl-options {:init-ns berganzapablo.repl}
                    :dependencies [[cider/piggieback "0.3.10"]
@@ -94,7 +96,9 @@
                                   [nrepl "0.5.3"]
                                   [pjstadig/humane-test-output "0.9.0"]
 
- ]
+                                  ;; To silence warnings from sass4clj dependecies about missing logger implementation
+                                  [org.slf4j/slf4j-nop "1.7.25"]
+                                  ]
 
                    :source-paths ["env/dev/clj"]
                    :plugins [[lein-figwheel "0.5.18"]
@@ -103,7 +107,8 @@
                               :exclusions [org.clojure/tools.reader]]
                              [refactor-nrepl "2.4.0"
                               :exclusions [org.clojure/clojure]]
-]
+                             [deraen/lein-sass4clj "0.3.1"]
+                             ]
 
                    :injections [(require 'pjstadig.humane-test-output)
                                 (pjstadig.humane-test-output/activate!)]
