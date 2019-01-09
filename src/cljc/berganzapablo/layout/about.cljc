@@ -3,4 +3,4 @@
 (defn about-layout [state]
   [:span.main
    [:h1 "About me"]
-   [:p (:text state)]])
+   [:p#about-text (:text state)]])
