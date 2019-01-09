@@ -15,7 +15,9 @@
                                          {:with-credentials? false}))]
               (case (:status response)
                 200 (reset! state (:body response))))))
+
       :display-name "about-page"
+
       :reagent-render
       (fn []
         (let [text (getHTMLById "about-text")]
