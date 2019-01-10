@@ -22,10 +22,10 @@
       (fn []
         (let [el (getById "blog-list")
               blogs (some-> el
-                      .-dataset
-                       .-state
-                       js/JSON.parse
-                       (js->clj :keywordize-keys true))]
-          (when (= (count (:blogs @state)) 0)
+                           .-dataset
+                           .-state
+                           js/JSON.parse
+                           (js->clj :keywordize-keys true))]
+          (when (zero? (count (:blogs @state)))
             (reset! state {:blogs blogs}))
           (blogs-layout (:blogs @state))))})))
