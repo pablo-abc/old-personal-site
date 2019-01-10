@@ -9,38 +9,38 @@ $font-stack: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
 $base-font-size: 1.125em;
 
 .body-container {
-  font-family: $font-stack;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 72px;
-  -webkit-font-smoothing: antialiased;
-  font-size: $base-font-size;
-  color: #333;
-  line-height: 1.5em;
+    font-family: $font-stack;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-top: 72px;
+    -webkit-font-smoothing: antialiased;
+    font-size: $base-font-size;
+    color: #333;
+    line-height: 1.5em;
 }
 
 h1, h2, h3 {
-  color: #000;
+    color: #000;
 }
 
 h1 {
-  font-size: $base-font-size + 1.375;
+    font-size: $base-font-size + 1.375;
 }
 
 h2 {
-  font-size: $base-font-size + 0.875;
+    font-size: $base-font-size + 0.875;
 }
 
 h3 {
-  font-size: $base-font-size + 0.125;
+    font-size: $base-font-size + 0.125;
 }
 
 a {
-  text-decoration: none;
-  color: #09f;
+    text-decoration: none;
+    color: #09f;
 
- // nesting is also supported
-  &:hover {
-    text-decoration: underline;
-  }
+    // nesting is also supported
+    &:hover {
+        text-decoration: underline;
+    }
 }

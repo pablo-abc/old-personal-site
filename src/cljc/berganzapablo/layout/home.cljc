@@ -2,5 +2,5 @@
 
 (defn home-layout []
   [:span.main
-   [:h1 "Welcome to berganzapablo"]
+   [:h1 "Pablo Berganza"]
    [:p "Programmer. Wish there were more LISP in the world."]])

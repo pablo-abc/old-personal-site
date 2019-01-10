@@ -21,11 +21,11 @@
       :reagent-render
       (fn []
         (let [el (getById "blog-list")
-              blogs (cond-> el
-                      el .-dataset
-                      el .-state
-                      el js/JSON.parse
-                      el (js->clj :keywordize-keys true))]
+              blogs (some-> el
+                      .-dataset
+                       .-state
+                       js/JSON.parse
+                       (js->clj :keywordize-keys true))]
           (when (= (count (:blogs @state)) 0)
             (reset! state {:blogs blogs}))
           (blogs-layout (:blogs @state))))})))

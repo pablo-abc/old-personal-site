@@ -6,9 +6,10 @@
             [accountant.core :as accountant]
             [berganzapablo.views.home :refer [home-page]]
             [berganzapablo.views.about :refer [about-page]]
-            [berganzapablo.routes :refer [router path-for]]
-            [berganzapablo.layout.current :refer [current-page-layout]]))
-
+            [berganzapablo.views.blogs :refer [blogs-page]]
+            [berganzapablo.routes :refer [path-for router]]
+            [berganzapablo.layout.current :refer [current-page-layout]]
+            [berganzapablo.menu :refer [menu-routes]]))
 
 ;; -------------------------
 ;; Translate routes -> page components
@@ -16,8 +17,8 @@
 (defn page-for [route]
   (case route
     :index #'home-page
-    :about #'about-page))
-
+    :about #'about-page
+    :blogs #'blogs-page))
 
 ;; -------------------------
 ;; Page mounting component
@@ -25,7 +26,7 @@
 (defn current-page []
   (fn []
     (let [page (:current-page (session/get :route))]
-      (current-page-layout [page] [(path-for :index) (path-for :about)]))))
+      (current-page-layout [page] menu-routes))))
 
 ;; -------------------------
 ;; Initialize app
