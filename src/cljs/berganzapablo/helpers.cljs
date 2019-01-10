@@ -9,5 +9,3 @@
 (defn getHTMLById [id]
   (let [el (getById id)]
     (if (nil? el) "" (.-innerHTML el))))
-
-(getById "blog-list")
