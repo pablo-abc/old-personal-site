@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS author (
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  description VARCHAR(255) NULL
+);
+
+INSERT INTO author (name) VALUES ('Pablo Berganza');

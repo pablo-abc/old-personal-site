@@ -19,7 +19,10 @@
                  [venantius/accountant "0.2.4"
                   :exclusions [org.clojure/tools.reader]]
                  [cljs-http "0.1.45"]
-                 [cheshire "5.8.1"]]
+                 [cheshire "5.8.1"]
+                 [org.clojure/java.jdbc "0.7.8"]
+                 [org.postgresql/postgresql "42.2.5.jre7"]
+                 [honeysql "0.9.4"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
@@ -86,34 +89,40 @@
   :sass {:source-paths ["src/sass"]
          :target-path "resources/public/css"}
 
-  :profiles {:dev {:repl-options {:init-ns berganzapablo.repl}
-                   :dependencies [[cider/piggieback "0.3.10"]
-                                  [binaryage/devtools "0.9.10"]
-                                  [ring/ring-mock "0.3.2"]
-                                  [ring/ring-devel "1.7.1"]
-                                  [prone "1.6.1"]
-                                  [figwheel-sidecar "0.5.18"]
-                                  [nrepl "0.5.3"]
-                                  [pjstadig/humane-test-output "0.9.0"]
+  :profiles {:dev [:project/dev :profiles/dev]
+             :profiles/dev {}
+             :project/dev {:repl-options {:init-ns berganzapablo.repl}
+                           :dependencies
+                           [[cider/piggieback "0.3.10"]
+                            [binaryage/devtools "0.9.10"]
+                            [ring/ring-mock "0.3.2"]
+                            [ring/ring-devel "1.7.1"]
+                            [prone "1.6.1"]
+                            [figwheel-sidecar "0.5.18"]
+                            [nrepl "0.5.3"]
+                            [pjstadig/humane-test-output "0.9.0"]
 
-                                  ;; To silence warnings from sass4clj dependecies about missing logger implementation
-                                  [org.slf4j/slf4j-nop "1.7.25"]
-                                  ]
+                            [org.slf4j/slf4j-nop "1.7.25"]
+                            ]
 
-                   :source-paths ["env/dev/clj"]
-                   :plugins [[lein-figwheel "0.5.18"]
-                             [cider/cider-nrepl "0.19.0"]
-                             [org.clojure/tools.namespace "0.3.0-alpha4"
-                              :exclusions [org.clojure/tools.reader]]
-                             [refactor-nrepl "2.4.0"
-                              :exclusions [org.clojure/clojure]]
-                             [deraen/lein-sass4clj "0.3.1"]
-                             ]
+                           :source-paths ["env/dev/clj"]
+                           :plugins
+                           [[lein-figwheel "0.5.18"]
+                            [cider/cider-nrepl "0.19.0"]
+                            [org.clojure/tools.namespace "0.3.0-alpha4"
+                             :exclusions [org.clojure/tools.reader]]
+                            [refactor-nrepl "2.4.0"
+                             :exclusions [org.clojure/clojure]]
+                            [deraen/lein-sass4clj "0.3.1"]
+                            [lein-pprint "1.2.0"]
+                            ]
 
-                   :injections [(require 'pjstadig.humane-test-output)
-                                (pjstadig.humane-test-output/activate!)]
+                           :injections
+                           [(require 'pjstadig.humane-test-output)
+                            (pjstadig.humane-test-output/activate!)]
 
-                   :env {:dev true}}
+                           :env {:dev true}
+                           }
 
              :uberjar {:hooks [minify-assets.plugin/hooks]
                        :source-paths ["env/prod/clj"]
