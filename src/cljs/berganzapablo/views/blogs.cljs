@@ -4,7 +4,7 @@
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
             [berganzapablo.layout.blogs :refer [blogs-layout]]
-            [berganzapablo.cljs.helpers :refer [getStateDataSet]]))
+            [berganzapablo.cljs.helpers :refer [get-state-data-set!]]))
 
 (defn blogs-page []
   (let [state (reagent/atom {:blogs '()})]
@@ -20,7 +20,7 @@
 
       :reagent-render
       (fn []
-        (let [blogs (getStateDataSet "blog-list" '())]
+        (let [blogs (get-state-data-set! "blog-list" '())]
           (when (zero? (count (:blogs @state)))
             (reset! state {:blogs blogs}))
           (blogs-layout (:blogs @state))))})))

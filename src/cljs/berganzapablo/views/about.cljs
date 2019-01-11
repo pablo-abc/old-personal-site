@@ -4,7 +4,7 @@
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
             [berganzapablo.layout.about :refer [about-layout]]
-            [berganzapablo.cljs.helpers :refer [getHTMLById]]))
+            [berganzapablo.cljs.helpers :refer [get-html-by-id]]))
 
 (defn about-page []
   (let [state (reagent/atom {:text ""})]
@@ -20,7 +20,7 @@
 
       :reagent-render
       (fn []
-        (let [text (getHTMLById "about-text")]
+        (let [text (get-html-by-id "about-text")]
           (when (not= text "")
             (reset! state {:text text}))
           (about-layout @state)))})))
