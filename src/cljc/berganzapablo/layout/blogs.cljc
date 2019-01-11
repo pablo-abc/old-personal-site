@@ -13,7 +13,7 @@
   [blogs]
   (-> blogs
      (->> (map fill-blogs))
-     (conj {:data-state #?(:clj (generate-string blogs)
-                          :cljs (js/JSON.stringify (clj->js blogs)))})
+     #?(:clj (conj {:data-state (generate-string blogs)})
+       :cljs identity)
      (conj :section#blog-list)
      vec))
