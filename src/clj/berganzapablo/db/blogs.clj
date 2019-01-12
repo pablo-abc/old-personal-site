@@ -13,7 +13,3 @@
   ([] (blogs-find {}))
   ([filter]
    (jdbc/query pg-db (sql/format (find-query)))))
-
-(def test-query  (-> (select :*)
-                    (from :blog_post)
-                    (where [:like :title "%ost%"])))
