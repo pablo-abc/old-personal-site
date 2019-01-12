@@ -1,10 +1,8 @@
-(ns berganzapablo.layout.current)
+(ns berganzapablo.layout.current
+  (:require [berganzapablo.layout.navbar :refer [navbar-layout]]))
 
 (defn current-page-layout [page paths]
   [:div
-   [:nav
-    [:p
-     [:a {:href (:index paths)} "Home"] " | "
-     [:a {:href (:blogs paths)} "Blog"] " | "
-     [:a {:href (:about paths)} "About me"]]]
+   [:header
+    (navbar-layout)]
    page])
