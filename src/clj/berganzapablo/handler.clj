@@ -9,7 +9,8 @@
             [berganzapablo.layout.current :refer [current-page-layout]]
             [berganzapablo.layout.home :refer [home-layout]]
             [berganzapablo.layout.blogs :refer [blogs-layout]]
-            [berganzapablo.db.blogs :refer [blogs-find]]
+            [berganzapablo.layout.blog :refer [blog-layout]]
+            [berganzapablo.db.blogs :as blogs]
             [berganzapablo.menu :refer [menu-routes]]))
 
 (defn head []
@@ -25,32 +26,37 @@
   [:div#app
    (current-page-layout layout menu-routes)])
 
-(defn current-page [uri]
+(defn current-page [{:keys [uri path-params] :as request}]
   (html5
    (head)
    [:body.body-container
     (mount-layout
-     (case uri
-       "/" (home-layout)
-       "/about" (about-layout (about-body))
-       "/blog" (blogs-layout (blogs-find))))
+     (condp re-matches uri
+       #"/" (home-layout)
+       #"/about" (about-layout (about-body))
+       #"/blog" (blogs-layout (blogs/find-many))
+       #"/blog/[0-9]+" (blog-layout
+                        (blogs/find-one
+                         {:id (Integer. (:blog-id path-params))}))))
     (include-js "/js/app.js")]))
 
 (defn index-handler
-  [{:keys [uri] :as request}]
+  [request]
   {:status 200
    :headers {"Content-Type" "text/html"}
-   :body (current-page uri)})
+   :body (current-page request)})
 
 (defn keywordize-map [str-map]
   (into {} (map #(vector (keyword (first %)) (second %)) str-map)))
 
 (defn body-for
-  [{:keys [uri query-params body] :as request}]
-  (case uri
-    "/api/test" (api-test-body (keywordize-map query-params))
-    "/api/about" (about-body)
-    "/api/blogs" (blogs-find (keywordize-map query-params))))
+  [{:keys [uri query-params path-params body] :as request}]
+  (condp re-matches uri
+    #"/api/test" (api-test-body (keywordize-map query-params))
+    #"/api/about" (about-body)
+    #"/api/blogs" (blogs/find-many (keywordize-map query-params))
+    #"/api/blogs/[0-9]+" (blogs/find-one
+                          {:id (Integer. (:blog-id path-params))})))
 
 (defn api-handler
   [request]
@@ -63,11 +69,17 @@
    (reitit-ring/router
     [["/" {:get {:handler index-handler}}]
      ["/about" {:get {:handler index-handler}}]
-     ["/blog" {:get {:handler index-handler}}]
+     ["/blog"
+      ["" {:get {:handler index-handler}}]
+      ["/:blog-id" {:get {:handler index-handler
+                          :parameters {:path {:blog-id int?}}}}]]
      ["/api"
       ["/test" {:get {:handler api-handler}}]
       ["/about" {:get {:handler api-handler}}]
-      ["/blogs" {:get {:handler api-handler}}]]]
+      ["/blogs"
+       ["" {:get {:handler api-handler}}]
+       ["/:blog-id" {:get {:handler api-handler
+                           :parameters {:path {:blog-id int?}}}}]]]]
     {:data {:middleware middleware}})
    (reitit-ring/routes
     (reitit-ring/create-resource-handler {:path "/" :root "/public"})

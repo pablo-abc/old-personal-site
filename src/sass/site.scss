@@ -43,4 +43,11 @@ a {
     &:hover {
         text-decoration: underline;
     }
+
+    .blog-item {
+        color: #000;
+    }
+    .blog-item:hover {
+        text-decoration: none;
+    }
 }

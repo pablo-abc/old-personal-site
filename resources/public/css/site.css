@@ -25,3 +25,7 @@ a {
   color: #09f; }
   a:hover {
     text-decoration: underline; }
+  a .blog-item {
+    color: #000; }
+  a .blog-item:hover {
+    text-decoration: none; }

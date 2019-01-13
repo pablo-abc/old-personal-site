@@ -7,6 +7,7 @@
             [berganzapablo.views.home :refer [home-page]]
             [berganzapablo.views.about :refer [about-page]]
             [berganzapablo.views.blogs :refer [blogs-page]]
+            [berganzapablo.views.blog :refer [blog-page]]
             [berganzapablo.routes :refer [path-for router]]
             [berganzapablo.layout.current :refer [current-page-layout]]
             [berganzapablo.menu :refer [menu-routes]]))
@@ -18,7 +19,8 @@
   (case route
     :index #'home-page
     :about #'about-page
-    :blogs #'blogs-page))
+    :blogs #'blogs-page
+    :blog #'blog-page))
 
 ;; -------------------------
 ;; Page mounting component

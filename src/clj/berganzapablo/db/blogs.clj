@@ -1,15 +1,25 @@
 (ns berganzapablo.db.blogs
-  (:require [clojure.java.jdbc :as jdbc]
-            [honeysql.core :as sql]
-            [honeysql.helpers :refer :all :as helpers]
-            [berganzapablo.db.config.db :refer [pg-db]]))
+  (:require [honeysql.helpers :refer :all :as helpers]
+            [berganzapablo.db.config.db
+             :refer [execute map->eq-query]]))
 
-(defn find-query []
-  (-> (select :*)
-     (from :blog_post)))
-
-(defn blogs-find
-  "Retrieve blog list from database."
-  ([] (blogs-find {}))
+(defn build-find-query
+  ([] (-> (select :*)
+         (from :blog_post)))
   ([filter]
-   (jdbc/query pg-db (sql/format (find-query)))))
+   (prn filter)
+   (-> (apply where (map->eq-query filter))
+      (select :*)
+      (from :blog_post))))
+
+(defn find-many
+  "Retrieve blog list from database."
+  ([] (find-many {}))
+  ([filter]
+   (execute (build-find-query))))
+
+(defn find-one
+  "Retrieve una blog from database."
+  ([] (find-one {}))
+  ([filter]
+   (first (execute (build-find-query filter)))))
