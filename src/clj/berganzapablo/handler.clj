@@ -5,13 +5,9 @@
             [config.core :refer [env]]
             [cheshire.core :refer [generate-string]]
             [berganzapablo.api.body :refer [api-test-body about-body]]
-            [berganzapablo.layout.about :refer [about-layout]]
-            [berganzapablo.layout.current :refer [current-page-layout]]
-            [berganzapablo.layout.home :refer [home-layout]]
-            [berganzapablo.layout.blogs :refer [blogs-layout]]
-            [berganzapablo.layout.blog :refer [blog-layout]]
             [berganzapablo.db.blogs :as blogs]
-            [berganzapablo.menu :refer [menu-routes]]))
+            [berganzapablo.menu :refer [menu-routes]]
+            [berganzapablo.layout :as layout]))
 
 (defn head []
   [:head
@@ -24,7 +20,7 @@
 
 (defn mount-layout [layout]
   [:div#app
-   (current-page-layout layout menu-routes)])
+   (layout/current-page layout menu-routes)])
 
 (defn current-page [{:keys [uri path-params] :as request}]
   (html5
@@ -32,10 +28,10 @@
    [:body.body-container
     (mount-layout
      (condp re-matches uri
-       #"/" (home-layout)
-       #"/about" (about-layout (about-body))
-       #"/blog" (blogs-layout (blogs/find-many))
-       #"/blog/[0-9]+" (blog-layout
+       #"/" (layout/home)
+       #"/about" (layout/about (about-body))
+       #"/blog" (layout/blogs (blogs/find-many))
+       #"/blog/[0-9]+" (layout/blog
                         (blogs/find-one
                          {:id (Integer. (:blog-id path-params))}))))
     (include-js "/js/app.js")]))

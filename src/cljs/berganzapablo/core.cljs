@@ -4,12 +4,9 @@
             [reitit.frontend :as reitit]
             [clerk.core :as clerk]
             [accountant.core :as accountant]
-            [berganzapablo.views.home :refer [home-page]]
-            [berganzapablo.views.about :refer [about-page]]
-            [berganzapablo.views.blogs :refer [blogs-page]]
-            [berganzapablo.views.blog :refer [blog-page]]
+            [berganzapablo.views :as views]
             [berganzapablo.routes :refer [path-for router]]
-            [berganzapablo.layout.current :refer [current-page-layout]]
+            [berganzapablo.layout :as layout]
             [berganzapablo.menu :refer [menu-routes]]))
 
 ;; -------------------------
@@ -17,10 +14,10 @@
 
 (defn page-for [route]
   (case route
-    :index #'home-page
-    :about #'about-page
-    :blogs #'blogs-page
-    :blog #'blog-page))
+    :index #'views/home-page
+    :about #'views/about-page
+    :blogs #'views/blogs-page
+    :blog #'views/blog-page))
 
 ;; -------------------------
 ;; Page mounting component
@@ -28,7 +25,7 @@
 (defn current-page []
   (fn []
     (let [page (:current-page (session/get :route))]
-      (current-page-layout [page] menu-routes))))
+      (layout/current-page [page] menu-routes))))
 
 ;; -------------------------
 ;; Initialize app
