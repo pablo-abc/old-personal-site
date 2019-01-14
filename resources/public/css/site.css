@@ -6,7 +6,9 @@
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
-  line-height: 1.5em; }
+  line-height: 1.5em;
+  background-color: #FFB6AA;
+  color: #265B6A; }
 
 h1, h2, h3 {
   color: #000; }
@@ -20,12 +22,31 @@ h2 {
 h3 {
   font-size: 1.25em; }
 
-a {
+nav a.nav-item {
   text-decoration: none;
-  color: #09f; }
-  a:hover {
-    text-decoration: underline; }
-  a .blog-item {
-    color: #000; }
-  a .blog-item:hover {
-    text-decoration: none; }
+  color: #AA4839;
+  transition: font-size 0.1s; }
+  nav a.nav-item:hover {
+    text-decoration: underline;
+    font-size: 1.5em; }
+
+nav a#logo {
+  text-decoration: none;
+  transition: font-size 0.1s; }
+  nav a#logo:hover {
+    font-size: 1.6em; }
+
+.blog-item {
+  text-decoration: none;
+  transition: font-size 0.1s;
+  color: #265B6A; }
+  .blog-item h3 {
+    color: #AA8839; }
+  .blog-item:hover {
+    font-size: 1.1em; }
+
+a#logo {
+  margin-right: 10px;
+  color: #022A35;
+  font-weight: bold;
+  font-size: 1.5em; }

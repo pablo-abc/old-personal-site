@@ -5,21 +5,20 @@
 (defn- fill-blogs
   "Fill component with the blog's information."
   [blog]
-  [:a {:href (str "/blog/" (:id blog))}
-   [:section.blog-item #?(:cljs {:key (:id blog)})
+  [:a.blog-item {:href (str "/blog/" (:id blog))}
+   [:section #?(:cljs {:key (:id blog)})
     [:h3 (:title blog)]
     [:p (:introduction blog)]]])
 
 (defn navbar []
   [:nav
-   [:a {:href "/"} "Home"] " | "
-   [:a {:href "/blog"} "Blog"] " | "
-   [:a {:href "/about"} "About me"]])
+   [:a#logo {:href "/"} "Pablo Berganza"]
+   [:a.nav-item {:href "/blog"} "Blog"] " | "
+   [:a.nav-item {:href "/about"} "About me"]])
 
 (defn home []
   [:span.main
-   [:h1 "Pablo Berganza"]
-   [:p "Programmer. Wish there were more LISP in the world."]])
+   [:p "Welcome to my (over-engineered) personal page!"]])
 
 (defn about [state]
   [:span.main
