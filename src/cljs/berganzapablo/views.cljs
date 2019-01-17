@@ -12,24 +12,24 @@
   (fn []
     [layout/home]))
 
-(defn about-page []
+(defn contact-page []
   (let [state (reagent/atom {:text ""})]
     (reagent/create-class
      {:component-did-mount
       (fn []
-        (go (let [response (<! (http/get "/api/about"
+        (go (let [response (<! (http/get "/api/contact"
                                          {:with-credentials? false}))]
               (case (:status response)
                 200 (reset! state (:body response))))))
 
-      :display-name "about-page"
+      :display-name "contact-page"
 
       :reagent-render
       (fn []
-        (let [text (get-html-by-id "about-text")]
+        (let [text (get-html-by-id "contact-text")]
           (when (not= text "")
             (reset! state {:text text}))
-          [layout/about @state]))})))
+          [layout/contact @state]))})))
 
 (defn blogs-page []
   (let [state (reagent/atom {:blogs '()})]

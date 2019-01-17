@@ -4,7 +4,7 @@
 (def router
   (reitit/router
    [["/" :index]
-    ["/about" :about]
+    ["/contact" :contact]
     ["/blog"
      ["" :blogs]
      ["/:blog-id" :blog]]]))

@@ -14,16 +14,15 @@
   [:nav
    [:a#logo {:href "/"} "Pablo Berganza"]
    [:a.nav-item {:href "/blog"} "Blog"] " | "
-   [:a.nav-item {:href "/about"} "About me"]])
+   [:a.nav-item {:href "/contact"} "Contact me"]])
 
 (defn home []
   [:span.main
    [:p "Welcome to my (over-engineered) personal page!"]])
 
-(defn about [state]
+(defn contact [state]
   [:span.main
-   [:h1 "About me"]
-   [:p#about-text (:text state)]])
+   [:p#contact-text (:text state)]])
 
 (defn blogs
   "Return layout for blog list page."

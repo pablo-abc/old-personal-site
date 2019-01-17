@@ -15,7 +15,7 @@
 (defn page-for [route]
   (case route
     :index #'views/home-page
-    :about #'views/about-page
+    :contact #'views/contact-page
     :blogs #'views/blogs-page
     :blog #'views/blog-page))
 

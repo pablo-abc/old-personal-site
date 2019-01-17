@@ -3,5 +3,5 @@
 (defn api-test-body [{:keys [name]}]
   {:name name})
 
-(defn about-body []
+(defn contact-body []
   {:text "Programmer. And stuff"})

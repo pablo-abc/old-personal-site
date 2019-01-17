@@ -4,7 +4,7 @@
             [hiccup.page :refer [include-js include-css html5]]
             [config.core :refer [env]]
             [cheshire.core :refer [generate-string]]
-            [berganzapablo.api.body :refer [api-test-body about-body]]
+            [berganzapablo.api.body :refer [api-test-body contact-body]]
             [berganzapablo.db.blogs :as blogs]
             [berganzapablo.menu :refer [menu-routes]]
             [berganzapablo.layout :as layout]))
@@ -29,7 +29,7 @@
     (mount-layout
      (condp re-matches uri
        #"/" (layout/home)
-       #"/about" (layout/about (about-body))
+       #"/contact" (layout/contact (contact-body))
        #"/blog" (layout/blogs (blogs/find-many))
        #"/blog/[0-9]+" (layout/blog
                         (blogs/find-one
@@ -49,7 +49,7 @@
   [{:keys [uri query-params path-params body] :as request}]
   (condp re-matches uri
     #"/api/test" (api-test-body (keywordize-map query-params))
-    #"/api/about" (about-body)
+    #"/api/contact" (contact-body)
     #"/api/blogs" (blogs/find-many (keywordize-map query-params))
     #"/api/blogs/[0-9]+" (blogs/find-one
                           {:id (Integer. (:blog-id path-params))})))
@@ -64,14 +64,14 @@
   (reitit-ring/ring-handler
    (reitit-ring/router
     [["/" {:get {:handler index-handler}}]
-     ["/about" {:get {:handler index-handler}}]
+     ["/contact" {:get {:handler index-handler}}]
      ["/blog"
       ["" {:get {:handler index-handler}}]
       ["/:blog-id" {:get {:handler index-handler
                           :parameters {:path {:blog-id int?}}}}]]
      ["/api"
       ["/test" {:get {:handler api-handler}}]
-      ["/about" {:get {:handler api-handler}}]
+      ["/contact" {:get {:handler api-handler}}]
       ["/blogs"
        ["" {:get {:handler api-handler}}]
        ["/:blog-id" {:get {:handler api-handler
