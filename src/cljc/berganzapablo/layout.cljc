@@ -22,7 +22,8 @@
 
 (defn contact [state]
   [:span.main
-   [:p#contact-text (:text state)]])
+   [:p#contact-text #?(:clj {:data-state (generate-string (:text state))})
+    (:text state)]])
 
 (defn blogs
   "Return layout for blog list page."
