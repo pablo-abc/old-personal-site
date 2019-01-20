@@ -33,7 +33,7 @@
        #"/blog" (layout/blogs (blogs/find-many))
        #"/blog/[0-9]+" (layout/blog
                         (blogs/find-one
-                         {:id (Integer. (:blog-id path-params))}))))
+                         {:id (Integer/valueOf (:blog-id path-params))}))))
     (include-js "/js/app.js")]))
 
 (defn index-handler

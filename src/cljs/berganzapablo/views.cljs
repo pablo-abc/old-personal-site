@@ -9,8 +9,7 @@
              :refer [get-html-by-id get-state-data-set!]]))
 
 (defn home-page []
-  (fn []
-    [layout/home]))
+  [layout/home])
 
 (defn contact-page []
   (let [state (reagent/atom {:text ""})]
