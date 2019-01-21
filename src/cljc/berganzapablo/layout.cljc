@@ -39,7 +39,7 @@
   "Fill component with blog content"
   [blog]
   [:article#blog #?(:clj {:data-state (generate-string blog)})
-   [:h2 (:title blog)]
+   [:h3 (:title blog)]
    [:p.introduction (:introduction blog)]
    (-> (:content blog)
       (string/split #"\n")
