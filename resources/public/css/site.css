@@ -2,12 +2,11 @@
   font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
   max-width: 600px;
   margin: 0 auto;
-  padding-top: 72px;
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
   line-height: 1.5em;
-  background-color: #FFB6AA;
+  background-color: #FFF;
   color: #265B6A; }
 
 h1, h2, h3 {
@@ -41,7 +40,7 @@ nav a#logo {
   transition: font-size 0.1s;
   color: #265B6A; }
   .blog-item h3 {
-    color: #AA8839; }
+    color: #265B6A; }
   .blog-item:hover {
     font-size: 1.1em; }
 
@@ -50,3 +49,6 @@ a#logo {
   color: #022A35;
   font-weight: bold;
   font-size: 1.5em; }
+
+#blog .introduction {
+  font-style: italic; }

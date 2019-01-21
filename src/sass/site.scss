@@ -15,12 +15,11 @@ $main-color: #265B6A;
     font-family: $font-stack;
     max-width: 600px;
     margin: 0 auto;
-    padding-top: 72px;
     -webkit-font-smoothing: antialiased;
     font-size: $base-font-size;
     color: #333;
     line-height: 1.5em;
-    background-color: #FFB6AA;
+    background-color: #FFF;
     color: $main-color;
 }
 
@@ -69,7 +68,7 @@ nav {
     color: $main-color;
 
     h3 {
-        color: #AA8839;
+        color: $main-color;
     }
 
     &:hover {
@@ -82,4 +81,10 @@ a#logo {
     color: $title-color;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+#blog {
+    .introduction {
+        font-style: italic;
+    }
 }
