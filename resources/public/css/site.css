@@ -40,7 +40,7 @@ nav a#logo {
   transition: font-size 0.1s;
   color: #265B6A; }
   .blog-item h3 {
-    color: #265B6A; }
+    color: #022A35; }
   .blog-item:hover {
     font-size: 1.1em; }
 
@@ -50,5 +50,10 @@ a#logo {
   font-weight: bold;
   font-size: 1.5em; }
 
-#blog .introduction {
-  font-style: italic; }
+#blog {
+  max-width: 400px; }
+  #blog h3 {
+    color: #022A35; }
+  #blog .introduction {
+    font-style: italic;
+    text-align: right; }

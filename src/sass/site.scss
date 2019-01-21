@@ -68,7 +68,7 @@ nav {
     color: $main-color;
 
     h3 {
-        color: $main-color;
+        color: $title-color;
     }
 
     &:hover {
@@ -84,7 +84,13 @@ a#logo {
 }
 
 #blog {
+    max-width: 400px;
+    h3 {
+        color: $title-color;
+    }
+
     .introduction {
         font-style: italic;
+        text-align: right;
     }
 }
