@@ -3,6 +3,8 @@
 // (import path can include _ but it is not needed)
 
 // @import 'profile';
+@import 'home';
+@import 'navbar';
 
 // You can use any sass features, like variables, for instance:
 $font-stack: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
@@ -37,29 +39,6 @@ h2 {
 
 h3 {
     font-size: $base-font-size + 0.125;
-}
-
-nav {
-    a.nav-item {
-        text-decoration: none;
-        color: $menu-color;
-        transition: font-size 0.1s;
-
-        // nesting is also supported
-        &:hover {
-            text-decoration: underline;
-            font-size: 1.5em;
-        }
-    }
-
-    a#logo {
-        text-decoration: none;
-        transition: font-size 0.1s;
-
-        &:hover {
-            font-size: 1.6em;
-        }
-    }
 }
 
 .blog-item {

@@ -1,3 +1,26 @@
+.main .img-fit {
+  height: 200px; }
+
+.main img {
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; }
+
+nav a.nav-item {
+  text-decoration: none;
+  color: #AA4839;
+  transition: font-size 0.1s; }
+  nav a.nav-item:hover {
+    text-decoration: underline;
+    font-size: 1.5em; }
+
+nav a#logo {
+  text-decoration: none;
+  transition: font-size 0.1s; }
+  nav a#logo:hover {
+    font-size: 1.6em; }
+
 .body-container {
   font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
   max-width: 600px;
@@ -20,20 +43,6 @@ h2 {
 
 h3 {
   font-size: 1.25em; }
-
-nav a.nav-item {
-  text-decoration: none;
-  color: #AA4839;
-  transition: font-size 0.1s; }
-  nav a.nav-item:hover {
-    text-decoration: underline;
-    font-size: 1.5em; }
-
-nav a#logo {
-  text-decoration: none;
-  transition: font-size 0.1s; }
-  nav a#logo:hover {
-    font-size: 1.6em; }
 
 .blog-item {
   text-decoration: none;

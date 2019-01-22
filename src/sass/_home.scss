@@ -1,0 +1,12 @@
+.main {
+    .img-fit {
+        height: 200px;
+    }
+
+    img {
+        object-fit: cover;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+}
