@@ -12,16 +12,22 @@
   [layout/home])
 
 (defn contact-page []
-  (let [state (reagent/atom {:text ""})]
+  (let [state (reagent/atom {:text ""
+                             :times-clicked 0})]
     (go (let [response (<! (http/get "/api/contact"
                                      {:with-credentials? false}))]
           (case (:status response)
-            200 (reset! state (:body response)))))
+            200 (swap! state assoc :text (:text (:body response))))))
     (fn []
       (let [text (get-state-data-set! "contact-text")]
         (when text
-          (reset! state {:text text}))
-        [layout/contact @state]))))
+          (swap! state assoc :text text))
+        [layout/contact
+         @state
+         #(swap! state
+                 assoc
+                 :times-clicked
+                 (inc (:times-clicked @state)))]))))
 
 (defn blogs-page []
   (let [state (reagent/atom {:blogs '()})]

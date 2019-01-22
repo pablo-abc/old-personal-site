@@ -17,13 +17,23 @@
    [:a.nav-item {:href "/contact"} "Contact me"]])
 
 (defn home []
-  [:span.main
+  [:section.main
+   [:div.img-fit
+    [:img {:src (str "https://scontent.fsal2-1.fna.fbcdn.net/"
+                     "v/t1.0-9/30516719_10216530245715580_95"
+                     "9662321477615616_n.jpg?_nc_cat=109&_nc_"
+                     "ht=scontent.fsal2-1.fna&oh=6c0dc7645989"
+                     "74ffae0215fb767e92b6&oe=5CB5AD16")}]]
    [:p "Welcome to my (over-engineered) personal page!"]])
 
-(defn contact [state]
-  [:span.main
-   [:p#contact-text #?(:clj {:data-state (generate-string (:text state))})
-    (:text state)]])
+(defn contact
+  ([state] (contact state nil))
+  ([state f]
+   [:span.main
+    [:button (when f {:on-click f})
+     (str "Click me! Clicked: " (:times-clicked state))]
+    [:p#contact-text #?(:clj {:data-state (generate-string (:text state))})
+     (:text state)]]))
 
 (defn blogs
   "Return layout for blog list page."

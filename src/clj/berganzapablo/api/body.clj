@@ -4,4 +4,5 @@
   {:name name})
 
 (defn contact-body []
-  {:text "Programmer. And stuff"})
+  {:text "Programmer. And stuff"
+   :times-clicked 0})
