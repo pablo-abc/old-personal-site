@@ -3,7 +3,13 @@
         height: 200px;
     }
 
-    img {
+    .header-img {
+        width: 100%;
+        object-fit: cover;
+        max-height: 700px;
+    }
+
+    #profile-pic {
         object-fit: cover;
         width: 200px;
         height: 200px;

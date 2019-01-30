@@ -1,6 +1,21 @@
-$menu-color: #AA4839;
-
 nav {
+    max-width: 800px;
+    padding: 0 20px;
+    margin: 0 auto;
+    display: flex;
+
+    div {
+        display: inline-block;
+        &.left-nav {
+            flex: 1;
+        }
+        &.right-nav {
+            a {
+                margin: 5px;
+            }
+        }
+    }
+
     a.nav-item {
         text-decoration: none;
         color: $menu-color;
