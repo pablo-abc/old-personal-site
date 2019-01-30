@@ -12,21 +12,30 @@
 
 (defn navbar []
   [:nav
-   [:a#logo {:href "/"} "Pablo Berganza"]
-   [:a.nav-item {:href "/blog"} "Blog"] " | "
-   [:a.nav-item {:href "/contact"} "Contact me"]])
+   [:div.left-nav
+    [:div.logo
+     [:a#logo {:href "/"} "Pablo Berganza"]]
+    [:div.nav-items
+     [:a.nav-item {:href "/blog"} "Blog"] " | "
+     [:a.nav-item {:href "/contact"} "Contact me"]]]
+   [:div.right-nav
+    [:a.nav-item [:i.fab.fa-github]]
+    [:a.nav-item [:i.fab.fa-instagram]]
+    [:a.nav-item [:i.fab.fa-facebook]]]])
 
 (defn home []
   [:section.main
+   [:img.header-img {:src "/images/main.jpg"}]
    [:div.img-fit
-    [:img {:src (str "https://scontent.fsal2-1.fna.fbcdn.net/"
-                     "v/t1.0-9/30516719_10216530245715580_95"
-                     "9662321477615616_n.jpg?_nc_cat=109&_nc_"
-                     "ht=scontent.fsal2-1.fna&oh=6c0dc7645989"
-                     "74ffae0215fb767e92b6&oe=5CB5AD16")}]]
+    [:img#profile-pic {:src (str "https://scontent.fsal2-1.fna.fbcdn.net/"
+                                 "v/t1.0-9/30516719_10216530245715580_95"
+                                 "9662321477615616_n.jpg?_nc_cat=109&_nc_"
+                                 "ht=scontent.fsal2-1.fna&oh=6c0dc7645989"
+                                 "74ffae0215fb767e92b6&oe=5CB5AD16")}]]
    [:p "Welcome to my (over-engineered) personal page!"]])
 
 (defn contact
+  "Return layout for contact page."
   ([state] (contact state nil))
   ([state f]
    [:span.main

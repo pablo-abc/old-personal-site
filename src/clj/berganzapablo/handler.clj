@@ -16,6 +16,11 @@
            :content "width=device-width, initial-scale=1"}]
    [:meta {:name "author" :content "Pablo Berganza"}]
    [:title "Pablo Berganza"]
+   [:link {:type "text/css"
+           :crossorigin "anonymous"
+           :integrity "sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+           :href "https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+           :rel "stylesheet"}]
    (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
 
 (defn mount-layout [layout]
