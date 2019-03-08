@@ -1,0 +1,33 @@
+#blog-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.blog-item {
+    text-decoration: none;
+    transition: font-size 0.1s;
+    color: $main-color;
+    border-bottom: 4px solid $color-primary-1;
+
+    h3 {
+        color: $title-color;
+    }
+
+    &:hover {
+        font-size: 1.1em;
+    }
+}
+
+#blog {
+    max-width: 400px;
+    h3 {
+        color: $title-color;
+    }
+
+    .introduction {
+        font-style: italic;
+        text-align: right;
+    }
+}

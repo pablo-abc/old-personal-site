@@ -3,7 +3,9 @@
 // (import path can include _ but it is not needed)
 
 // @import 'profile';
+@import 'overpass';
 @import 'variables';
+@import 'blog';
 @import 'home';
 @import 'navbar';
 
@@ -35,35 +37,9 @@ h3 {
     font-size: $base-font-size + 0.125;
 }
 
-.blog-item {
-    text-decoration: none;
-    transition: font-size 0.1s;
-    color: $main-color;
-
-    h3 {
-        color: $title-color;
-    }
-
-    &:hover {
-        font-size: 1.1em;
-    }
-}
-
 a#logo {
     margin-right: 10px;
     color: $title-color;
     font-weight: bold;
     font-size: 1.5em;
-}
-
-#blog {
-    max-width: 400px;
-    h3 {
-        color: $title-color;
-    }
-
-    .introduction {
-        font-style: italic;
-        text-align: right;
-    }
 }

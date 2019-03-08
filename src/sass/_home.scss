@@ -1,7 +1,7 @@
 .main {
     .main-info {
         width: 100%;
-        background-image: url("/images/main.jpg");
+        background-image: url("/images/mai.jpg");
         background-color: $color-primary-1;
         background-repeat: no-repeat;
         background-size: 100%;
@@ -26,6 +26,7 @@
             background-color: $main-color;
             margin: 24px 20px;
             padding: 24px;
+            padding-top: 28px;
             border-radius: 50px;
             line-height: 1;
             text-align: center;
