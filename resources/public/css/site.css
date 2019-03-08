@@ -1,16 +1,34 @@
-.main .img-fit {
-  height: 200px; }
+.main .main-info {
+  position: relative;
+  width: 100%; }
 
 .main .header-img {
   width: 100%;
   object-fit: cover;
-  max-height: 700px; }
+  max-height: 608px; }
+
+.main #profile-box {
+  position: absolute;
+  left: 40px;
+  top: 40px;
+  z-index: 1;
+  display: flex;
+  flex-direction: row; }
+  .main #profile-box #profile-bubble {
+    color: white;
+    background-color: #07516A;
+    height: 30px;
+    margin: 20px;
+    margin-top: 50px;
+    padding: 50px 20px 50px 20px;
+    border-radius: 50px; }
 
 .main #profile-pic {
   object-fit: cover;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%; }
+  width: 216px;
+  height: 216px;
+  border-radius: 50%;
+  border: 4px solid white; }
 
 nav {
   max-width: 800px;
@@ -43,7 +61,8 @@ nav {
   color: #333;
   line-height: 1.5em;
   background-color: #FFF;
-  color: #07516A; }
+  color: #07516A;
+  margin: 0; }
 
 h1, h2, h3 {
   color: #000; }

@@ -1,18 +1,39 @@
 .main {
-    .img-fit {
-        height: 200px;
+    .main-info {
+        position: relative;
+        width: 100%;
     }
 
     .header-img {
         width: 100%;
         object-fit: cover;
-        max-height: 700px;
+        max-height: 608px;
+    }
+
+    #profile-box {
+        position: absolute;
+        left: 40px;
+        top: 40px;
+        z-index: 1;
+        display: flex;
+        flex-direction: row;
+
+        #profile-bubble {
+            color: white;
+            background-color: $main-color;
+            height: 30px;
+            margin: 20px;
+            margin-top: 50px;
+            padding: 50px 20px 50px 20px;
+            border-radius: 50px;
+        }
     }
 
     #profile-pic {
         object-fit: cover;
-        width: 200px;
-        height: 200px;
+        width: 216px;
+        height: 216px;
         border-radius: 50%;
+        border: 4px solid white;
     }
 }
