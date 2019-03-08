@@ -1,39 +1,41 @@
 .main {
     .main-info {
-        position: relative;
         width: 100%;
-    }
-
-    .header-img {
-        width: 100%;
-        object-fit: cover;
-        max-height: 608px;
+        background-image: url("/images/main.jpg");
+        background-color: $color-primary-1;
+        background-repeat: no-repeat;
+        background-size: 100%;
     }
 
     #profile-box {
-        position: absolute;
-        left: 40px;
-        top: 40px;
-        z-index: 1;
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 0;
+
+        #profile-pic {
+            object-fit: cover;
+            width: 216px;
+            height: 216px;
+            border-radius: 50%;
+            border: 4px solid white;
+        }
 
         #profile-bubble {
             color: white;
             background-color: $main-color;
-            height: 30px;
-            margin: 20px;
-            margin-top: 50px;
-            padding: 50px 20px 50px 20px;
+            margin: 24px 20px;
+            padding: 24px;
             border-radius: 50px;
+            line-height: 1;
+            text-align: center;
         }
     }
 
-    #profile-pic {
-        object-fit: cover;
-        width: 216px;
-        height: 216px;
-        border-radius: 50%;
-        border: 4px solid white;
+    @media only screen and (min-width: 600px) {
+        #profile-box {
+            flex-direction: row;
+            justify-content: center;
+        }
     }
 }

@@ -19,21 +19,21 @@ nav {
     a.nav-item {
         text-decoration: none;
         color: $menu-color;
-        transition: font-size 0.1s;
+        transition: color 0.1s;
 
         // nesting is also supported
         &:hover {
             text-decoration: underline;
-            font-size: 1.5em;
+            color: $color-secondary-2-2;
         }
     }
 
     a#logo {
         text-decoration: none;
-        transition: font-size 0.1s;
+        transition: color 0.1s;
 
         &:hover {
-            font-size: 1.6em;
+            color: $color-primary-1;
         }
     }
 }

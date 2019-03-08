@@ -26,14 +26,13 @@
 (defn home []
   [:section.main
    [:section.main-info
-    [:img.header-img {:src "/images/main.jpg"}]
     [:div#profile-box
      [:img#profile-pic {:src (str "https://scontent.fsal2-1.fna.fbcdn.net/"
                                   "v/t1.0-9/30516719_10216530245715580_95"
                                   "9662321477615616_n.jpg?_nc_cat=109&_nc_"
                                   "ht=scontent.fsal2-1.fna&oh=6c0dc7645989"
                                   "74ffae0215fb767e92b6&oe=5CB5AD16")}]
-     [:h2#profile-bubble "Hi, I make web stuff! Welcome!"]]]])
+     [:h3#profile-bubble "Hi, I make web stuff! Welcome!"]]]])
 
 (defn contact
   "Return layout for contact page."
