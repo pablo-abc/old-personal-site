@@ -22,13 +22,17 @@
                  [cheshire "5.8.1"]
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.5.jre7"]
-                 [honeysql "0.9.4"]]
+                 [honeysql "0.9.4"]
+                 [midje "1.9.6"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
             [lein-asset-minifier "0.2.7"
              :exclusions [org.clojure/clojure]]
-            [lein-ring "0.12.4"]]
+            [lein-ring "0.12.4"]
+            [lein-cloverage "1.0.13"]]
+
+  :cloverage {:runner :midje}
 
   :ring {:handler berganzapablo.handler/app
          :uberwar-name "berganzapablo.war"}
@@ -42,6 +46,7 @@
    [:cljsbuild :builds :app :compiler :output-to]]
 
   :source-paths ["src/clj" "src/cljc"]
+  :test-paths ["test/clj"]
   :resource-paths ["resources" "target/cljsbuild"]
 
   :minify-assets
@@ -108,7 +113,7 @@
                            :source-paths ["env/dev/clj"]
                            :plugins
                            [[lein-figwheel "0.5.18"]
-                            [cider/cider-nrepl "0.20.0"]
+                            [cider/cider-nrepl "0.21.1"]
                             [org.clojure/tools.namespace "0.3.0-alpha4"
                              :exclusions [org.clojure/tools.reader]]
                             [refactor-nrepl "2.4.0"
