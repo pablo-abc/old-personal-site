@@ -23,7 +23,7 @@
 
         #profile-bubble {
             color: white;
-            background-color: $main-color;
+            background-color: $color-primary-0;
             margin: 24px 20px;
             padding: 24px;
             padding-top: 28px;
@@ -37,6 +37,62 @@
         #profile-box {
             flex-direction: row;
             justify-content: center;
+        }
+    }
+
+    .abilities {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h2 {
+            color: $color-primary-3;
+        }
+    }
+
+    .box-abilities {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .color-1 {
+        background-color: $color-secondary-2-1;
+    }
+
+    .color-2 {
+        background-color: $color-secondary-1-1;
+    }
+
+    .color-3 {
+        background-color: $color-primary-1;
+    }
+
+    .ability {
+        width: 100vw;
+        height: 100vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            margin: 10%;
+        }
+    }
+
+    @media only screen and (min-width: 600px) {
+        .box-abilities {
+            flex-direction: row;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            width: 90vw;
+        }
+
+        .ability {
+            width: 20vw;
+            height: 20vw;
+            margin: 0 3% 3% 3%;
         }
     }
 }

@@ -8,11 +8,11 @@
 .blog-item {
     text-decoration: none;
     transition: font-size 0.1s;
-    color: $main-color;
+    color: $color-primary-4;
     border-bottom: 4px solid $color-primary-1;
 
     h3 {
-        color: $title-color;
+        color: $color-primary-0;
     }
 
     &:hover {
@@ -23,7 +23,7 @@
 #blog {
     max-width: 400px;
     h3 {
-        color: $title-color;
+        color: $color-primary-0;
     }
 
     .introduction {
