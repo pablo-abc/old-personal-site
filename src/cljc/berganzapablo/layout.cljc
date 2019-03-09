@@ -32,7 +32,22 @@
                                   "9662321477615616_n.jpg?_nc_cat=109&_nc_"
                                   "ht=scontent.fsal2-1.fna&oh=6c0dc7645989"
                                   "74ffae0215fb767e92b6&oe=5CB5AD16")}]
-     [:h3#profile-bubble "Hi, I make web stuff! Welcome!"]]]])
+     [:h3#profile-bubble "Hi, I make web stuff! Welcome!"]]]
+   [:section.abilities
+    [:h2 "My Abilities"]
+    [:section.box-abilities
+     [:section.ability.color-1
+      [:img {:src "https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png"}]]
+     [:section.ability.color-2
+      [:img {:src "https://raw.githubusercontent.com/remojansen/logo.ts/master/ts.png"}]]
+     [:section.ability.color-1
+      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/768px-Clojure_logo.svg.png"}]]
+     [:section.ability.color-2
+      [:img {:src "https://raw.githubusercontent.com/cljs/logo/master/cljs-white.png"}]]
+     [:section.ability.color-1
+      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png"}]]
+     [:section#docker-logo.ability.color-2
+      [:img {:src "https://dwglogo.com/wp-content/uploads/2017/09/1300px-Docker_container_engine_logo.png"}]]]]])
 
 (defn contact
   "Return layout for contact page."
