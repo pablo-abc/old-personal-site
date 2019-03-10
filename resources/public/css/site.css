@@ -335,14 +335,21 @@
 
 #blog {
   width: 100%; }
-  #blog h1 {
-    text-align: center;
+  #blog header {
     background-color: #D76A9B;
-    color: white;
-    padding: 16px;
+    text-align: center;
+    width: 100%;
     margin: 0 0 64px 0;
-    width: 100%; }
+    min-height: 110px; }
+  #blog h1 {
+    color: white;
+    padding: 16px 0 0 0;
+    margin: 0; }
   #blog .introduction {
+    margin: 0;
+    color: white;
+    padding: 0 0 16px 0; }
+  #blog .created {
     font-style: italic;
     text-align: right;
     width: 95%;
