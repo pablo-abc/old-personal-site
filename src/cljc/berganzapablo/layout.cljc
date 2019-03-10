@@ -1,6 +1,24 @@
 (ns berganzapablo.layout
   (:require #?(:clj [cheshire.core :refer [generate-string]])
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [markdown.core :as md]))
+
+(defn- format-js-date [timestamp]
+  #?(:cljs
+    (let [js-date (js/Date. timestamp)
+          year (.getFullYear js-date)
+          month (inc (.getMonth js-date))
+          date (.getDate js-date)
+          month-zero (when (= (count (str month)) 1) "0")
+          date-zero (when (= (count (str date)) 1) "0")]
+      (str year "-" month-zero month "-" date-zero date))))
+
+(defn- format-time [timestamp]
+  (when timestamp
+    #?(:cljs (format-js-date timestamp)
+      :clj (first (string/split (str timestamp) #" ")))))
+
+;; (time/format "yyyy-MM-dd" (time/offset-date-time timestamp))
 
 (defn- fill-blogs
   "Fill component with the blog's information."
@@ -73,13 +91,16 @@
   "Fill component with blog content"
   [blog]
   [:article#blog #?(:clj {:data-state (generate-string blog)})
-   [:h1 (:title blog)]
-   [:p.introduction (:introduction blog)]
-   (-> (:content blog)
-      (string/split #"\n")
-      (->> (map #(vector :p %)))
-      (conj :section.content)
-      vec)])
+   [:header
+    [:h1 (:title blog)]
+    [:p.introduction (:introduction blog)]]
+   [:p.created  (format-time (:created blog))]
+   [:section.content
+    (-> (:content blog)
+       #?(:clj (md/md-to-html-string)
+         :cljs (-> (md/md->html)
+                  (->> (assoc {} :__html)
+                     (assoc {} :dangerouslySetInnerHTML)))))]])
 
 (defn current-page [page paths]
   [:div

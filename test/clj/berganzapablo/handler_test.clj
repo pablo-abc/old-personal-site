@@ -4,7 +4,7 @@
   (:import [java.io ByteArrayInputStream]))
 
 (fact "head returns an array"
-      (handler/head) => #(= (count %) 7)
+      (handler/head) => #(= (count %) 8)
       (handler/head) => (has-prefix [:head]))
 
 (fact "mount-layout should return array"

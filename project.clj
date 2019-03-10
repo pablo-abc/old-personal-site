@@ -23,7 +23,9 @@
                  [org.clojure/java.jdbc "0.7.8"]
                  [org.postgresql/postgresql "42.2.5.jre7"]
                  [honeysql "0.9.4"]
-                 [midje "1.9.6"]]
+                 [midje "1.9.6"]
+                 [markdown-clj "1.0.7"]
+                 [clojure.java-time "0.3.2"]]
 
   :plugins [[lein-environ "1.1.0"]
             [lein-cljsbuild "1.1.7"]
