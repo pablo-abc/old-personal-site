@@ -9,7 +9,6 @@
     text-decoration: none;
     transition: font-size 0.1s;
     color: $color-primary-4;
-    border-bottom: 4px solid $color-primary-1;
 
     h3 {
         color: $color-primary-0;
@@ -21,13 +20,29 @@
 }
 
 #blog {
-    max-width: 400px;
-    h3 {
-        color: $color-primary-0;
+    width: 100%;
+
+    h1 {
+        text-align: center;
+        background-color: $color-primary-0;
+        color: white;
+        padding: 16px;
+        margin: 0 0 64px 0;
+        width: 100%;
     }
 
     .introduction {
         font-style: italic;
         text-align: right;
+        width: 95%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .content {
+        color: #555;
+        width: 95%;
+        max-width: 600px;
+        margin: 0 auto;
     }
 }

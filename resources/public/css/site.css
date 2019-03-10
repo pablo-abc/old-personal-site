@@ -327,25 +327,37 @@
 .blog-item {
   text-decoration: none;
   transition: font-size 0.1s;
-  color: #07526A;
-  border-bottom: 4px solid #6FB1C7; }
+  color: #A1235C; }
   .blog-item h3 {
-    color: #297C98; }
+    color: #D76A9B; }
   .blog-item:hover {
     font-size: 1.1em; }
 
 #blog {
-  max-width: 400px; }
-  #blog h3 {
-    color: #297C98; }
+  width: 100%; }
+  #blog h1 {
+    text-align: center;
+    background-color: #D76A9B;
+    color: white;
+    padding: 16px;
+    margin: 0 0 64px 0;
+    width: 100%; }
   #blog .introduction {
     font-style: italic;
-    text-align: right; }
+    text-align: right;
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto; }
+  #blog .content {
+    color: #555;
+    width: 95%;
+    max-width: 600px;
+    margin: 0 auto; }
 
 .main .main-info {
   width: 100%;
   background-image: url("/images/mai.jpg");
-  background-color: #6FB1C7;
+  background-color: #F3C2D8;
   background-repeat: no-repeat;
   background-size: 100%; }
 
@@ -362,7 +374,7 @@
     border: 4px solid white; }
   .main #profile-box #profile-bubble {
     color: white;
-    background-color: #297C98;
+    background-color: #D76A9B;
     margin: 24px 20px;
     padding: 24px;
     padding-top: 28px;
@@ -381,7 +393,7 @@
   flex-direction: column;
   align-items: center; }
   .main .abilities h2 {
-    color: #0F6A88; }
+    color: #BB437A; }
 
 .main .box-abilities {
   display: flex;
@@ -389,13 +401,13 @@
   width: 100vw; }
 
 .main .color-1 {
-  background-color: #FF9C8A; }
+  background-color: #FFDECB; }
 
 .main .color-2 {
-  background-color: #FFDD8A; }
+  background-color: #D1BCE7; }
 
 .main .color-3 {
-  background-color: #6FB1C7; }
+  background-color: #F3C2D8; }
 
 .main .ability {
   width: 100vw;
@@ -421,7 +433,8 @@ nav {
   max-width: 800px;
   padding: 0 20px;
   margin: 8px auto;
-  display: flex; }
+  display: flex;
+  align-items: center; }
   nav div {
     display: inline-block; }
     nav div.left-nav {
@@ -430,25 +443,24 @@ nav {
       margin: 5px; }
   nav a.nav-item {
     text-decoration: none;
-    color: #F3573A;
+    color: #FFAC7D;
     transition: color 0.1s; }
     nav a.nav-item:hover {
       text-decoration: underline;
-      color: #FF7960; }
+      color: #FFC4A3; }
   nav a#logo {
     text-decoration: none;
     transition: color 0.1s; }
     nav a#logo:hover {
-      color: #6FB1C7; }
+      color: #F3C2D8; }
 
 .body-container {
   font-family: "Overpass", "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 1.125em;
   color: #333;
-  line-height: 1.5em;
   background-color: #FFF;
-  color: #07516A;
+  color: #BB437A;
   margin: 0; }
 
 h1, h2, h3 {
@@ -465,6 +477,9 @@ h3 {
 
 a#logo {
   margin-right: 10px;
-  color: #297C98;
+  color: #D76A9B;
   font-weight: bold;
   font-size: 1.5em; }
+
+p {
+  font-size: 0.875em; }

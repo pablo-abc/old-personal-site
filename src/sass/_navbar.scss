@@ -3,6 +3,7 @@ nav {
     padding: 0 20px;
     margin: 8px auto;
     display: flex;
+    align-items: center;
 
     div {
         display: inline-block;
@@ -18,7 +19,7 @@ nav {
 
     a.nav-item {
         text-decoration: none;
-        color: $menu-color;
+        color: $color-secondary-2-0;
         transition: color 0.1s;
 
         // nesting is also supported

@@ -5,6 +5,7 @@
 // @import 'profile';
 @import 'overpass';
 @import 'variables';
+@import 'colorspink1';
 @import 'blog';
 @import 'home';
 @import 'navbar';
@@ -15,9 +16,8 @@
     -webkit-font-smoothing: antialiased;
     font-size: $base-font-size;
     color: #333;
-    line-height: 1.5em;
     background-color: #FFF;
-    color: $main-color;
+    color: $color-primary-3;
     margin: 0;
 }
 
@@ -42,4 +42,8 @@ a#logo {
     color: $color-primary-0;
     font-weight: bold;
     font-size: 1.5em;
+}
+
+p {
+    font-size: $base-font-size - 0.25;
 }
