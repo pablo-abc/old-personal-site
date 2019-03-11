@@ -7,7 +7,6 @@
   ([] (-> (select :*)
          (from :blog_post)))
   ([filter]
-   (prn filter)
    (-> (apply where (map->eq-query filter))
       (select :*)
       (from :blog_post))))

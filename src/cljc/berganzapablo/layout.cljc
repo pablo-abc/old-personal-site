@@ -1,21 +1,22 @@
 (ns berganzapablo.layout
+  #?(:cljs (:require-macros [berganzapablo.layout :refer [wait-for]]))
   (:require #?(:clj [cheshire.core :refer [generate-string]])
             [clojure.string :as string]
             [markdown.core :as md]))
 
 (def ability-images
-  '("https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png"
-    "https://raw.githubusercontent.com/remojansen/logo.ts/master/ts.png"
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/768px-Clojure_logo.svg.png"
+  '("https://cdn.svgporn.com/logos/javascript.svg"
+    "https://cdn.svgporn.com/logos/typescript-icon.svg"
+    "https://cdn.svgporn.com/logos/clojure.svg"
     "https://raw.githubusercontent.com/cljs/logo/master/cljs-white.png"
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png"
-    "https://dwglogo.com/wp-content/uploads/2017/09/1300px-Docker_container_engine_logo.png"))
+    "https://cdn.svgporn.com/logos/python.svg"
+    "https://cdn.svgporn.com/logos/docker.svg"))
 
-(defmacro wait-for [[content value] color element]
-  `(let [~content ~value]
-     (if ~content
-       ~element
-       [:div.loader (loader ~color)])))
+#?(:clj (defmacro wait-for [[content value] color element]
+         `(let [~content ~value]
+            (if ~content
+              ~element
+              [:div.loader (loader ~color)]))))
 
 (defn- loader [color]
   (vec (conj (take 4 (repeat [:div {:class (str "lds-" color)}]))
@@ -99,12 +100,14 @@
 (defn blogs
   "Return layout for blog list page."
   [blogs]
-  (-> blogs
-     (->> (map fill-blogs))
-     #?(:clj (conj {:data-state (generate-string blogs)})
-       :cljs identity)
-     (conj :section#blog-list)
-     vec))
+  (wait-for [content blogs]
+            "pink"
+            (-> content
+               (->> (map fill-blogs))
+               #?(:clj (conj {:data-state (generate-string content)})
+                 :cljs identity)
+               (conj :section#blog-list)
+               vec)))
 
 (defn blog
   "Fill component with blog content"
@@ -114,15 +117,14 @@
     [:h1 (or (:title blog) (loader "white"))]
     [:p.introduction (:introduction blog)]]
    [:p.created  (format-time (:created blog))]
-   (let [content (:content blog)]
-     (if content
-       [:section.content
-        (-> content
-           #?(:clj (md/md-to-html-string)
-             :cljs (-> (md/md->html)
-                      (->> (assoc {} :__html)
-                         (assoc {} :dangerouslySetInnerHTML)))))]
-       [:div.loader (loader "pink")]))])
+   (wait-for [content (:content blog)]
+             "pink"
+             [:section.content
+              (-> content
+                 #?(:clj (md/md-to-html-string)
+                   :cljs (-> (md/md->html)
+                            (->> (assoc {} :__html)
+                               (assoc {} :dangerouslySetInnerHTML)))))])])
 
 (defn current-page [page paths]
   [:div

@@ -30,13 +30,13 @@
                  (inc (:times-clicked @state)))]))))
 
 (defn blogs-page []
-  (let [state (reagent/atom {:blogs '()})]
+  (let [state (reagent/atom {:blogs nil})]
     (go (let [response (<! (http/get "/api/blogs"
                                      {:with-credentials? false}))]
           (case (:status response)
             200 (reset! state {:blogs (:body response)}))))
     (fn []
-      (let [blogs (get-state-data-set! "blog-list" '())]
+      (let [blogs (get-state-data-set! "blog-list")]
         (when (zero? (count (:blogs @state)))
           (reset! state {:blogs blogs}))
         [layout/blogs (:blogs @state)]))))
