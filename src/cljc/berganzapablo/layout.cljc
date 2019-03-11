@@ -12,11 +12,10 @@
     "https://cdn.svgporn.com/logos/python.svg"
     "https://cdn.svgporn.com/logos/docker.svg"))
 
-#?(:clj (defmacro wait-for [[content value] color element]
-         `(let [~content ~value]
-            (if ~content
-              ~element
-              [:div.loader (loader ~color)]))))
+#?(:clj (defmacro wait-for [content color element]
+         `(if ~content
+            ~element
+            [:div.loader (loader ~color)])))
 
 (defn- loader [color]
   (vec (conj (take 4 (repeat [:div {:class (str "lds-" color)}]))
@@ -48,7 +47,8 @@
   [:a.blog-item {:href (str "/blog/" (:id blog))}
    [:section #?(:cljs {:key (:id blog)})
     [:h3 (:title blog)]
-    [:p (:introduction blog)]]])
+    [:p.created (format-time (:created blog))]
+    [:p.introduction (:introduction blog)]]])
 
 (defn navbar []
   [:nav
@@ -100,14 +100,17 @@
 (defn blogs
   "Return layout for blog list page."
   [blogs]
-  (wait-for [content blogs]
-            "pink"
-            (-> content
-               (->> (map fill-blogs))
-               #?(:clj (conj {:data-state (generate-string content)})
-                 :cljs identity)
-               (conj :section#blog-list)
-               vec)))
+  [:section.blog-posts
+   [:header
+    [:h1 "Blog"]]
+   (wait-for blogs
+             "pink"
+             (-> blogs
+                (->> (map fill-blogs))
+                #?(:clj (conj {:data-state (generate-string blogs)})
+                  :cljs identity)
+                (conj :section#blog-list)
+                vec))])
 
 (defn blog
   "Fill component with blog content"
@@ -117,17 +120,21 @@
     [:h1 (or (:title blog) (loader "white"))]
     [:p.introduction (:introduction blog)]]
    [:p.created  (format-time (:created blog))]
-   (wait-for [content (:content blog)]
-             "pink"
-             [:section.content
-              (-> content
-                 #?(:clj (md/md-to-html-string)
-                   :cljs (-> (md/md->html)
-                            (->> (assoc {} :__html)
-                               (assoc {} :dangerouslySetInnerHTML)))))])])
+   (let [content (:content blog)]
+     (wait-for
+      content
+      "pink"
+      [:section.content
+       (->
+        content
+        #?(:clj (md/md-to-html-string)
+          :cljs (-> (md/md->html)
+                   (->> (assoc {} :__html)
+                      (assoc {} :dangerouslySetInnerHTML)))))]))])
 
 (defn current-page [page paths]
   [:div
-   [:header
+   [:header#nav-menu
     (navbar)]
-   page])
+   [:div#page
+    page]])
