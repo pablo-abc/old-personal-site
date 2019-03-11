@@ -318,6 +318,17 @@
   src: local("Overpass Mono Bold"), local("OverpassMono-Bold"), url(https://fonts.gstatic.com/s/overpassmono/v4/_Xm3-H86tzKDdAPa-KPQZ-AC3pSRo_CXBlRc4EU.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 
+.blog-posts header {
+  background-color: #D76A9B;
+  text-align: center;
+  width: 100%;
+  margin: 0 0 16px 0; }
+
+.blog-posts h1 {
+  color: white;
+  padding: 16px 0 8px 0;
+  margin: 0; }
+
 #blog-list {
   display: flex;
   flex-direction: column;
@@ -326,12 +337,23 @@
 
 .blog-item {
   text-decoration: none;
-  transition: font-size 0.1s;
-  color: #A1235C; }
+  transition: background-color 0.1s;
+  color: #A1235C;
+  margin: 0;
+  margin-top: 16px;
+  padding: 8px;
+  border-radius: 5px; }
+  .blog-item .created {
+    color: #333;
+    margin-top: 0px;
+    margin-bottom: 8px; }
+  .blog-item .introduction {
+    margin: 0px; }
   .blog-item h3 {
-    color: #D76A9B; }
+    color: #D76A9B;
+    margin: 0; }
   .blog-item:hover {
-    font-size: 1.1em; }
+    background-color: #FFDECB; }
 
 #blog {
   width: 100%; }
@@ -426,7 +448,8 @@
   height: 100vw;
   display: flex;
   align-items: center;
-  justify-content: center; }
+  justify-content: center;
+  border-radius: 10px; }
   .main .ability img {
     margin: 10%;
     max-width: 80%; }
@@ -466,6 +489,15 @@ nav {
     transition: color 0.1s; }
     nav a#logo:hover {
       color: #F3C2D8; }
+
+#page {
+  margin-top: 50px; }
+
+#nav-menu {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: white; }
 
 .loader {
   display: flex;
