@@ -3,6 +3,29 @@
             [clojure.string :as string]
             [markdown.core :as md]))
 
+(def ability-images
+  '("https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png"
+    "https://raw.githubusercontent.com/remojansen/logo.ts/master/ts.png"
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/768px-Clojure_logo.svg.png"
+    "https://raw.githubusercontent.com/cljs/logo/master/cljs-white.png"
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png"
+    "https://dwglogo.com/wp-content/uploads/2017/09/1300px-Docker_container_engine_logo.png"))
+
+(defmacro wait-for [[content value] color element]
+  `(let [~content ~value]
+     (if ~content
+       ~element
+       [:div.loader (loader ~color)])))
+
+(defn- loader [color]
+  (vec (conj (take 4 (repeat [:div {:class (str "lds-" color)}]))
+             :div.lds-ellipsis)))
+
+(defn- ability-colors [quantity]
+  (flatten
+   (map vector
+        (repeat quantity "color-1") (repeat quantity "color-2"))))
+
 (defn- format-js-date [timestamp]
   #?(:cljs
     (let [js-date (js/Date. timestamp)
@@ -17,8 +40,6 @@
   (when timestamp
     #?(:cljs (format-js-date timestamp)
       :clj (first (string/split (str timestamp) #" ")))))
-
-;; (time/format "yyyy-MM-dd" (time/offset-date-time timestamp))
 
 (defn- fill-blogs
   "Fill component with the blog's information."
@@ -41,6 +62,10 @@
     [:a.nav-item [:i.fab.fa-instagram]]
     [:a.nav-item [:i.fab.fa-facebook]]]])
 
+(defn- home-img-attr [source]
+  (cond-> {}
+    source (assoc :src source)))
+
 (defn home []
   [:section.main
    [:section.main-info
@@ -53,19 +78,13 @@
      [:h3#profile-bubble "Hi, I make web stuff! Welcome!"]]]
    [:section.abilities
     [:h2 "My Abilities"]
-    [:section.box-abilities
-     [:section.ability.color-1
-      [:img {:src "https://raw.githubusercontent.com/voodootikigod/logo.js/master/js.png"}]]
-     [:section.ability.color-2
-      [:img {:src "https://raw.githubusercontent.com/remojansen/logo.ts/master/ts.png"}]]
-     [:section.ability.color-1
-      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Clojure_logo.svg/768px-Clojure_logo.svg.png"}]]
-     [:section.ability.color-2
-      [:img {:src "https://raw.githubusercontent.com/cljs/logo/master/cljs-white.png"}]]
-     [:section.ability.color-1
-      [:img {:src "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/768px-Python-logo-notext.svg.png"}]]
-     [:section#docker-logo.ability.color-2
-      [:img {:src "https://dwglogo.com/wp-content/uploads/2017/09/1300px-Docker_container_engine_logo.png"}]]]]])
+    (vec (conj
+          (map #(vector :section.ability {:class %2}
+                        [:img
+                         (home-img-attr %1)])
+               ability-images
+               (ability-colors (count ability-images)))
+          :section.box-abilities))]])
 
 (defn contact
   "Return layout for contact page."
@@ -92,15 +111,18 @@
   [blog]
   [:article#blog #?(:clj {:data-state (generate-string blog)})
    [:header
-    [:h1 (:title blog)]
+    [:h1 (or (:title blog) (loader "white"))]
     [:p.introduction (:introduction blog)]]
    [:p.created  (format-time (:created blog))]
-   [:section.content
-    (-> (:content blog)
-       #?(:clj (md/md-to-html-string)
-         :cljs (-> (md/md->html)
-                  (->> (assoc {} :__html)
-                     (assoc {} :dangerouslySetInnerHTML)))))]])
+   (let [content (:content blog)]
+     (if content
+       [:section.content
+        (-> content
+           #?(:clj (md/md-to-html-string)
+             :cljs (-> (md/md->html)
+                      (->> (assoc {} :__html)
+                         (assoc {} :dangerouslySetInnerHTML)))))]
+       [:div.loader (loader "pink")]))])
 
 (defn current-page [page paths]
   [:div
