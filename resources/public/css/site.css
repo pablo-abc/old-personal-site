@@ -359,7 +359,12 @@
     color: #555;
     width: 95%;
     max-width: 600px;
-    margin: 0 auto; }
+    margin: 0 auto;
+    font-weight: 550;
+    line-height: 1.2; }
+  @media only screen and (min-width: 600px) {
+    #blog .content {
+      line-height: 1.5; } }
 
 .main .main-info {
   width: 100%;
@@ -423,7 +428,8 @@
   align-items: center;
   justify-content: center; }
   .main .ability img {
-    margin: 10%; }
+    margin: 10%;
+    max-width: 80%; }
 
 @media only screen and (min-width: 600px) {
   .main .box-abilities {
@@ -461,6 +467,65 @@ nav {
     nav a#logo:hover {
       color: #F3C2D8; }
 
+.loader {
+  display: flex;
+  width: 100%;
+  justify-content: center; }
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px; }
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0); }
+
+.lds-pink {
+  background: #D76A9B; }
+
+.lds-white {
+  background: white; }
+
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite; }
+
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite; }
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1); }
+  100% {
+    transform: scale(0); } }
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0); }
+  100% {
+    transform: translate(19px, 0); } }
+
 .body-container {
   font-family: "Overpass", "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -468,7 +533,8 @@ nav {
   color: #333;
   background-color: #FFF;
   color: #BB437A;
-  margin: 0; }
+  margin: 0;
+  -moz-osx-font-smoothing: grayscale; }
 
 h1, h2, h3 {
   color: #000; }
@@ -490,3 +556,6 @@ a#logo {
 
 p {
   font-size: 0.875em; }
+
+.hidden {
+  display: none; }

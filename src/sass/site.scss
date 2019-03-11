@@ -9,6 +9,7 @@
 @import 'blog';
 @import 'home';
 @import 'navbar';
+@import 'loader';
 
 // You can use any sass features, like variables, for instance:
 .body-container {
@@ -19,6 +20,7 @@
     background-color: #FFF;
     color: $color-primary-3;
     margin: 0;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3 {
@@ -46,4 +48,8 @@ a#logo {
 
 p {
     font-size: $base-font-size - 0.25;
+}
+
+.hidden {
+    display: none;
 }
